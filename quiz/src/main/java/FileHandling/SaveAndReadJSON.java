@@ -1,37 +1,39 @@
 package FileHandling;
 
 import Quizes.Quiz;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.ToNumberPolicy;
+import Questions.IQuestion;
+import Questions.Question;
+import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SaveAndReadJSON {
-    private static final Gson gson = new GsonBuilder().setPrettyPrinting().setObjectToNumberStrategy((ToNumberPolicy.LONG_OR_DOUBLE)).create();
-    public static void saveQuiz(List<Quiz> quizzes, String fileName){
+    private static final Gson gson = new GsonBuilder()
+            .setPrettyPrinting()
+            .registerTypeAdapter(IQuestion.class, (JsonDeserializer<IQuestion>) (json, typeOfT, context) ->
+                    context.deserialize(json, Question.class))
+            .create();
+    public static void saveQuiz(List<Quiz<String>> quizzes, String fileName){
         try (FileWriter writer = new FileWriter(fileName)){
             gson.toJson(quizzes, writer);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-    public static List<Quiz> readQuizJSON(String fileName) {
+    public static List<Quiz<String>> readQuizJSON(String fileName) {
         try (FileReader reader = new FileReader(fileName)) {
-            Type listType = new TypeToken<ArrayList<Quiz>>() {}.getType();
-            List<Quiz> loadedQuizz =  gson.fromJson(reader, listType);
+            Type listType = new TypeToken<ArrayList<Quiz<String>>>() {}.getType();
+            List<Quiz<String>> loadedQuizz = gson.fromJson(reader, listType);
             return loadedQuizz != null ? loadedQuizz : new ArrayList<>();
         } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
+            return new ArrayList<>();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 }
+

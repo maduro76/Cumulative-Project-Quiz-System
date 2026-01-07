@@ -3,28 +3,8 @@
     "quizId": "EXAM-1",
     "title": "Java Master",
     "questions": [
-      {
-        "id": "Q1",
-        "question": "Inheritance keyword?",
-        "correctAnswer": "b",
-        "score": 10,
-        "category": "OOP",
-        "answerOptions": {
-          "A": "implements",
-          "B": "extends"
-        }
-      },
-      {
-        "id": "Q2",
-        "question": "2^3?",
-        "correctAnswer": "b",
-        "score": 5,
-        "category": "Math",
-        "answerOptions": {
-          "A": "6",
-          "B": "8"
-        }
-      }
+      {},
+      {}
     ],
     "userAnswers": {
       "Q1": {
@@ -37,5 +17,19 @@
       }
     },
     "totalScore": 15
+  },
+  {
+    "quizId": "HIST-1",
+    "title": "History",
+    "questions": [
+      {}
+    ],
+    "userAnswers": {
+      "Q1": {
+        "questionId": "Q1",
+        "answerText": "a"
+      }
+    },
+    "totalScore": 5
   }
 ]

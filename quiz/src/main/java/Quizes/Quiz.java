@@ -1,6 +1,7 @@
 package Quizes;
 
 import Questions.Question;
+import Questions.IQuestion;
 import Answers.Answer;
 import Answers.IAnswer;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.Map;
 public class Quiz<T> implements IQuiz<T> {
     private String quizId;
     private String title;
-    private List<Question<T>> questions;
+    private List<IQuestion<T>> questions;
     private Map<String, Answer<T>> userAnswers;
     private int totalScore;
 
@@ -19,7 +20,7 @@ public class Quiz<T> implements IQuiz<T> {
         this.questions = new ArrayList<>();
         this.userAnswers = new HashMap<>();
     }
-    public Quiz(String quizId, String title, List<Question<T>> questions) {
+    public Quiz(String quizId, String title, List<IQuestion<T>> questions) {
         this.quizId = quizId;
         this.title = title;
         this.questions = questions;
@@ -33,7 +34,7 @@ public class Quiz<T> implements IQuiz<T> {
     }
     public int calculateScore() {
         int tempScore = 0;
-        for (Question<T> q : questions) {
+        for (IQuestion<T> q : questions) {
             IAnswer<T> ans = userAnswers.get(q.getId());
             if (ans != null && q.checkAnswer(ans)) {
                 tempScore += q.getScore();
@@ -42,12 +43,12 @@ public class Quiz<T> implements IQuiz<T> {
         this.totalScore = tempScore;
         return tempScore;
     }
-    public List<Question<T>> getQuestions() { return questions; } //entire collection
+    public List<IQuestion<T>> getQuestions() { return questions; } //entire collection
     public int getTotalScore() { return totalScore; }
-    public void addQuestion(Questions.IQuestion<T> q) {questions.add((Question<T>) q);}
+    public void addQuestion(IQuestion<T> q) {questions.add((Question<T>) q);}
     public boolean removeQuestion(int id) { return false; }
-    public Questions.IQuestion<T> getQuestion(int index) { return questions.get(index); } //single item
-    public List<Questions.IQuestion<T>> getAllQuestions() { return new ArrayList<>(questions); }
+    public IQuestion<T> getQuestion(int index) { return questions.get(index); } //single item
+    public List<IQuestion<T>> getAllQuestions() { return new ArrayList<>(questions); }
     public int getQuestionCount() { return questions.size(); }
     public String getQuizId() { return quizId; }
     public String getTitle() { return title; }
