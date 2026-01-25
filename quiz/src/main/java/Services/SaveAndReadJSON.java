@@ -1,8 +1,8 @@
-package FileHandling;
+package Services;
 
-import Quizes.Quiz;
-import Questions.IQuestion;
-import Questions.Question;
+import Models.Quiz;
+import Models.IQuestion;
+import Models.Question;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 

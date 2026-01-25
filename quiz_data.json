@@ -1,35 +1,23 @@
 [
   {
-    "quizId": "EXAM-1",
-    "title": "Java Master",
+    "quizId": "QUIZ-92dc64",
+    "title": "Trivia",
     "questions": [
-      {},
-      {}
-    ],
-    "userAnswers": {
-      "Q1": {
-        "questionId": "Q1",
-        "answerText": "b"
-      },
-      "Q2": {
-        "questionId": "Q2",
-        "answerText": "b"
+      {
+        "id": "Q480a93",
+        "question": "What\u0027s capital of Poland?",
+        "correctAnswer": "D",
+        "score": 10,
+        "category": "Trivia",
+        "answerOptions": {
+          "A": "Poland",
+          "B": "Czechia",
+          "C": "Berlin",
+          "D": "Warsaw"
+        }
       }
-    },
-    "totalScore": 15
-  },
-  {
-    "quizId": "HIST-1",
-    "title": "History",
-    "questions": [
-      {}
     ],
-    "userAnswers": {
-      "Q1": {
-        "questionId": "Q1",
-        "answerText": "a"
-      }
-    },
-    "totalScore": 5
+    "userAnswers": {},
+    "totalScore": 0
   }
 ]

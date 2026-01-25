@@ -1,15 +1,12 @@
-package Quizes;
-
-import Answers.IAnswer;
-import Questions.IQuestion;
+package Models;
 
 import java.util.List;
 
 public interface IQuiz<T> {
-    void addQuestion (IQuestion<T> question);
+    void addQuestion (Question<T> question);
     boolean removeQuestion (int questionId);
-    IQuestion<T> getQuestion (int index);
-    List<IQuestion<T>> getAllQuestions ();
+    Question<T> getQuestion (int index);
+    List<Question<T>> getAllQuestions ();
     void userAnswers (IAnswer<T> answer);
     int calculateScore ();
     int getTotalScore ();

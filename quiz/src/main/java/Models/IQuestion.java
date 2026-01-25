@@ -1,6 +1,5 @@
-package Questions;
+package Models;
 
-import Answers.IAnswer;
 
 public interface IQuestion<T> {
     String getId();
