@@ -30,11 +30,11 @@ public class QuizService {
         }, executor);
     }
 
-    public CompletableFuture<Void> saveQuizAsync(Quiz quiz) {
+    public CompletableFuture<Void> saveQuizAsync(Quiz<String> quiz) {
         return CompletableFuture.runAsync(() -> dataManager.addItems(quiz), executor);
     }
 
-    public CompletableFuture<Void> updateQuizAsync(String id, Quiz quiz) {
+    public CompletableFuture<Void> updateQuizAsync(String id, Quiz<String> quiz) {
         return CompletableFuture.runAsync(() -> dataManager.updateItems(id, quiz), executor);
     }
 

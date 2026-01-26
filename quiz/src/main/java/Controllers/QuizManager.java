@@ -14,6 +14,7 @@ public class QuizManager {
     private QuizTake quizTaker;
     private QuizCreate quizCreator;
     private QuizEdit quizEditor;
+    private QuizDelete quizDeleter;
 
     public QuizManager() {
         this.scanner = new Scanner(System.in);
@@ -24,6 +25,7 @@ public class QuizManager {
         this.quizTaker = new QuizTake(scanner, quizService);
         this.quizCreator = new QuizCreate(scanner, quizService);
         this.quizEditor = new QuizEdit(scanner, quizService);
+        this.quizDeleter = new QuizDelete(scanner, quizService);
     }
 
     public void run() {
@@ -44,6 +46,9 @@ public class QuizManager {
                     handleEditQuiz();
                     break;
                 case 4:
+                    handleDeleteQuiz();
+                    break;
+                case 5:
                     handleExit();
                     return;
                 default:
@@ -58,7 +63,8 @@ public class QuizManager {
         System.out.println("1. Take Quiz");
         System.out.println("2. Create Quiz");
         System.out.println("3. Edit Existing Quiz");
-        System.out.println("4. Exit");
+        System.out.println("4. Delete Quiz");
+        System.out.println("5. Exit");
     }
 
     private void handleTakeQuiz() {
@@ -72,6 +78,11 @@ public class QuizManager {
 
     private void handleEditQuiz() {
         quizEditor.editQuiz();
+        ConsoleUI.waitForEnter();
+    }
+
+    private void handleDeleteQuiz() {
+        quizDeleter.deleteQuiz();
         ConsoleUI.waitForEnter();
     }
 
