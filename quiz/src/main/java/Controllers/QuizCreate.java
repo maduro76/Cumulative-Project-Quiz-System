@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.UUID;
+import java.util.concurrent.ExecutionException;
 
 
 public class QuizCreate {
@@ -55,9 +56,15 @@ public class QuizCreate {
         String quizId = "QUIZ-" + UUID.randomUUID().toString().substring(0, 6);
         Quiz<String> quiz = new Quiz<>(quizId, title, new ArrayList<>(questions));
 
-        ConsoleUI.printSuccess("Quiz '" + title + "' created with " + questions.size() + " questions");
+        try{
+            quizService.saveQuizAsync(quiz).get();
+            ConsoleUI.printSuccess("Quiz '" + title + "' created with " + questions.size() + " questions");
+        } catch (ExecutionException e) {
+            throw new RuntimeException(e);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
-
     private Question<String> createQuestion() {
         return QuestionBuilder.createQuestion(scanner);
     }
